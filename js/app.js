@@ -3,7 +3,13 @@ var calc = document.querySelector("div");
 var firstVal = "";
 var secondVal = "";
 var option = 0;
+var solved = false;
 
+
+function solve(){
+	equality();
+	solved = true;
+}
 
 function equality(){
 	// setting up all of the operations. 1 is addition
@@ -25,9 +31,11 @@ function equality(){
 }
 
 function updateNum(){
+	if(!solved){
+		display.textContent = "";
+	}
 	secondVal += this.textContent;
-	console.log(secondVal);
-	console.log("I will be here until the event is removed!");
+	display.textContent = secondVal;
 }
 
 // Creating all numerical buttons.
@@ -38,7 +46,15 @@ for(var i = 0; i < 9; i++){
 	btn.classList.add("number");
 	btn.textContent = val;
 	btn.addEventListener("click", function(){
-		display.textContent += val;
+		// If an expression was just solved, the display will be reset,
+		// and then the program will continue as normal.
+		if(!solved){
+			display.textContent += val;
+		} else if(solved){
+			display.textContent = val;
+			// resetting solved to false.
+			solved = false;
+		}
 	});
 	calc.appendChild(btn);
 }
@@ -46,10 +62,11 @@ for(var i = 0; i < 9; i++){
 // Selecting the entire set of numbers.
 var nums = document.querySelectorAll(".number");
 
-
+// creating the addition button.
 var plus = document.createElement("button");
 plus.textContent = "+";
 
+// creating the equality button.
 var equals = document.createElement("button");
 equals.classList.add("equal");
 equals.textContent = "=";
@@ -57,15 +74,15 @@ equals.textContent = "=";
 plus.addEventListener("click", function(){
 	equality();
 	option = 1;
+	solved = false;
 	firstVal = display.textContent;
 	// clearing the display.
-	display.textContent = "";
 	secondVal = "";
 	nums.forEach(function(num){
 		num.addEventListener("click", updateNum, false);
 	});
 	// the first parameter is always the event e.
-	equals.addEventListener("click", equality, false);
+	equals.addEventListener("click", solve, false);
 });
 
 calc.appendChild(plus);

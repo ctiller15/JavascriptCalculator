@@ -20,6 +20,13 @@ function equality(){
 		secondVal = "";
 	}
 	// 2 is subtraction.
+	else if(option === 2){
+		console.log("We will subtract now.");
+		diff = Number(firstVal) - Number(secondVal);
+		display.textContent = diff;
+		firstVal = "";
+		secondVal = "";
+	}
 	// 3 is multiplication.
 	// 4 is division.
 	// resetting all of the event listeners on the buttons.
@@ -39,9 +46,9 @@ function updateNum(){
 }
 
 // Creating all numerical buttons.
-for(var i = 0; i < 9; i++){
+for(var i = 0; i < 10; i++){
 	let btn = document.createElement("button");
-	let val = i + 1;
+	let val = i;
 	btn.classList.add("button_" + val);
 	btn.classList.add("number");
 	btn.textContent = val;
@@ -66,6 +73,10 @@ var nums = document.querySelectorAll(".number");
 var plus = document.createElement("button");
 plus.textContent = "+";
 
+// creating the subtraction button.
+var minus = document.createElement("button");
+minus.textContent = "-";
+
 // creating the equality button.
 var equals = document.createElement("button");
 equals.classList.add("equal");
@@ -85,6 +96,21 @@ plus.addEventListener("click", function(){
 	equals.addEventListener("click", solve, false);
 });
 
+minus.addEventListener("click", function(){
+	equality();
+	option = 2;
+	solved = false;
+	firstVal = display.textContent;
+	// clearing the display.
+	secondVal = "";
+	nums.forEach(function(num){
+		num.addEventListener("click", updateNum, false);
+	});
+	// the first parameter is always the event e.
+	equals.addEventListener("click", solve, false);
+});
+
 calc.appendChild(plus);
+calc.appendChild(minus);
 calc.appendChild(equals);
 

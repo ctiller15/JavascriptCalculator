@@ -11,21 +11,23 @@ function solve(){
 	solved = true;
 }
 
+function finishEquation(solution){
+	display.textContent = solution;
+	firstVal = "";
+	secondVal = "";
+}
+
 function equality(){
 	// setting up all of the operations. 1 is addition
 	if(option === 1){
 		sum = Number(firstVal) + Number(secondVal);
-		display.textContent = sum;
-		firstVal = "";
-		secondVal = "";
+		finishEquation(sum);
 	}
 	// 2 is subtraction.
 	else if(option === 2){
 		console.log("We will subtract now.");
 		diff = Number(firstVal) - Number(secondVal);
-		display.textContent = diff;
-		firstVal = "";
-		secondVal = "";
+		finishEquation(diff);
 	}
 	// 3 is multiplication.
 	// 4 is division.
@@ -43,6 +45,21 @@ function updateNum(){
 	}
 	secondVal += this.textContent;
 	display.textContent = secondVal;
+}
+
+function handleOperator(optval){
+	equality();
+	option = optval;
+	solved = false;
+	firstVal = display.textContent;
+	// clearing the display.
+	secondVal = "";
+	nums.forEach(function(num){
+		num.addEventListener("click", updateNum, false);
+	});
+	// the first parameter is always the event e.
+	equals.addEventListener("click", solve, false);
+
 }
 
 // Creating all numerical buttons.
@@ -83,31 +100,11 @@ equals.classList.add("equal");
 equals.textContent = "=";
 
 plus.addEventListener("click", function(){
-	equality();
-	option = 1;
-	solved = false;
-	firstVal = display.textContent;
-	// clearing the display.
-	secondVal = "";
-	nums.forEach(function(num){
-		num.addEventListener("click", updateNum, false);
-	});
-	// the first parameter is always the event e.
-	equals.addEventListener("click", solve, false);
+	handleOperator(1);
 });
 
 minus.addEventListener("click", function(){
-	equality();
-	option = 2;
-	solved = false;
-	firstVal = display.textContent;
-	// clearing the display.
-	secondVal = "";
-	nums.forEach(function(num){
-		num.addEventListener("click", updateNum, false);
-	});
-	// the first parameter is always the event e.
-	equals.addEventListener("click", solve, false);
+	handleOperator(2);
 });
 
 calc.appendChild(plus);

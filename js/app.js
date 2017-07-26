@@ -25,17 +25,19 @@ function equality(){
 	}
 	// 2 is subtraction.
 	else if(option === 2){
-		console.log("We will subtract now.");
 		diff = Number(firstVal) - Number(secondVal);
 		finishEquation(diff);
 	}
 	// 3 is multiplication.
 	else if(option === 3){
-		console.log("multiplying...");
 		product = Number(firstVal) * Number(secondVal);
 		finishEquation(product);
 	}
 	// 4 is division.
+	else if(option === 4){
+		quotient = Number(firstVal) / Number(secondVal);
+		finishEquation(quotient);
+	}
 	// resetting all of the event listeners on the buttons.
 	nums.forEach(function(num){
 		num.removeEventListener("click", updateNum, false);
@@ -103,6 +105,10 @@ minus.textContent = "-";
 var times = document.createElement("button");
 times.textContent = "x";
 
+// creating the division button.
+var divide = document.createElement("button");
+divide.textContent = "/";
+
 // creating the equality button.
 var equals = document.createElement("button");
 equals.classList.add("equal");
@@ -120,8 +126,13 @@ times.addEventListener("click", function(){
 	handleOperator(3);
 });
 
+divide.addEventListener("click", function(){
+	handleOperator(4);
+});
+
 calc.appendChild(plus);
 calc.appendChild(minus);
 calc.appendChild(times);
+calc.appendChild(divide);
 calc.appendChild(equals);
 

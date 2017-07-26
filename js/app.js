@@ -30,6 +30,11 @@ function equality(){
 		finishEquation(diff);
 	}
 	// 3 is multiplication.
+	else if(option === 3){
+		console.log("multiplying...");
+		product = Number(firstVal) * Number(secondVal);
+		finishEquation(product);
+	}
 	// 4 is division.
 	// resetting all of the event listeners on the buttons.
 	nums.forEach(function(num){
@@ -94,6 +99,10 @@ plus.textContent = "+";
 var minus = document.createElement("button");
 minus.textContent = "-";
 
+// creating the multiplication button.
+var times = document.createElement("button");
+times.textContent = "x";
+
 // creating the equality button.
 var equals = document.createElement("button");
 equals.classList.add("equal");
@@ -107,7 +116,12 @@ minus.addEventListener("click", function(){
 	handleOperator(2);
 });
 
+times.addEventListener("click", function(){
+	handleOperator(3);
+});
+
 calc.appendChild(plus);
 calc.appendChild(minus);
+calc.appendChild(times);
 calc.appendChild(equals);
 

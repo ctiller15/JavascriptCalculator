@@ -93,6 +93,10 @@ for(var i = 0; i < 10; i++){
 // Selecting the entire set of numbers.
 var nums = document.querySelectorAll(".number");
 
+// creating a decimal button.
+var decimal = document.createElement("button");
+decimal.textContent = ".";
+
 // creating the addition button.
 var plus = document.createElement("button");
 plus.textContent = "+";
@@ -114,6 +118,30 @@ var equals = document.createElement("button");
 equals.classList.add("equal");
 equals.textContent = "=";
 
+// finally, creating a clear button as per the user stories.
+// I am doing a hard refactor after this is complete.
+var clear = document.createElement("button");
+clear.textContent = "A/C";
+
+decimal.addEventListener("click", function(){
+	console.log("adding a decimal");
+		if(display.textContent.indexOf(".") === -1){
+			if(!solved){
+				display.textContent += ".";
+				secondVal += this.textContent;
+				//display.textContent = secondVal;
+			} else if(solved){
+				display.textContent = ".";
+				secondVal += ".";
+				// resetting solved to false.
+				solved = false;
+			}
+		} else {
+			console.log("This number already has a decimal. You cannot add another.");
+		}
+	console.log(secondVal);
+});
+
 plus.addEventListener("click", function(){
 	handleOperator(1);
 });
@@ -130,9 +158,24 @@ divide.addEventListener("click", function(){
 	handleOperator(4);
 });
 
+clear.addEventListener("click", function(){
+	console.log("clearing the display...");
+	display.textContent = "";
+	firstVal = "";
+	secondVal = "";
+	solved = false;
+	option = 0;
+	// resetting all of the event listeners on the buttons.
+	nums.forEach(function(num){
+		num.removeEventListener("click", updateNum, false);
+	});
+});
+
+calc.appendChild(decimal);
 calc.appendChild(plus);
 calc.appendChild(minus);
 calc.appendChild(times);
 calc.appendChild(divide);
 calc.appendChild(equals);
+calc.appendChild(clear);
 

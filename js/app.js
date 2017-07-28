@@ -4,7 +4,18 @@ var firstVal = "";
 var secondVal = "";
 var option = 0;
 var solved = false;
+var opsObj = {};
 
+// A simple function that creates the necessary operation buttons.
+function createOperation(name, icon, operation){
+	opsObj[name] = {}
+	opsObj[name].button = document.createElement("button");
+	opsObj[name].button.textContent = icon;
+	opsObj[name].button.addEventListener("click", function(){
+		handleOperator(operation);
+	});
+	calc.appendChild(opsObj[name].button);
+}
 
 function solve(){
 	equality();
@@ -96,27 +107,25 @@ var nums = document.querySelectorAll(".number");
 // creating a decimal button.
 var decimal = document.createElement("button");
 decimal.textContent = ".";
+calc.appendChild(decimal);
 
 // creating the addition button.
-var plus = document.createElement("button");
-plus.textContent = "+";
+createOperation("plus", "+", 1);
 
 // creating the subtraction button.
-var minus = document.createElement("button");
-minus.textContent = "-";
+createOperation("minus", "-", 2);
 
 // creating the multiplication button.
-var times = document.createElement("button");
-times.textContent = "x";
+createOperation("times", "x", 3);
 
 // creating the division button.
-var divide = document.createElement("button");
-divide.textContent = "/";
+createOperation("divide", "/", 4);
 
 // creating the equality button.
 var equals = document.createElement("button");
 equals.classList.add("equal");
 equals.textContent = "=";
+calc.appendChild(equals);
 
 // finally, creating a clear button as per the user stories.
 // I am doing a hard refactor after this is complete.
@@ -142,22 +151,6 @@ decimal.addEventListener("click", function(){
 	console.log(secondVal);
 });
 
-plus.addEventListener("click", function(){
-	handleOperator(1);
-});
-
-minus.addEventListener("click", function(){
-	handleOperator(2);
-});
-
-times.addEventListener("click", function(){
-	handleOperator(3);
-});
-
-divide.addEventListener("click", function(){
-	handleOperator(4);
-});
-
 clear.addEventListener("click", function(){
 	console.log("clearing the display...");
 	display.textContent = "";
@@ -171,11 +164,4 @@ clear.addEventListener("click", function(){
 	});
 });
 
-calc.appendChild(decimal);
-calc.appendChild(plus);
-calc.appendChild(minus);
-calc.appendChild(times);
-calc.appendChild(divide);
-calc.appendChild(equals);
 calc.appendChild(clear);
-

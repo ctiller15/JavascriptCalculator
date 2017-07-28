@@ -110,6 +110,24 @@ var nums = document.querySelectorAll(".number");
 // creating a decimal button.
 var decimal = document.createElement("button");
 decimal.textContent = ".";
+decimal.addEventListener("click", function(){
+	console.log("adding a decimal");
+		if(display.textContent.indexOf(".") === -1){
+			if(!solved){
+				display.textContent += ".";
+				secondVal += this.textContent;
+				//display.textContent = secondVal;
+			} else if(solved){
+				display.textContent = ".";
+				secondVal += ".";
+				// resetting solved to false.
+				solved = false;
+			}
+		} else {
+			console.log("This number already has a decimal. You cannot add another.");
+		}
+	console.log(secondVal);
+});
 numSection.appendChild(decimal);
 
 // creating the addition button.
@@ -135,25 +153,6 @@ numSection.appendChild(equals);
 var clear = document.createElement("button");
 clear.textContent = "A/C";
 
-decimal.addEventListener("click", function(){
-	console.log("adding a decimal");
-		if(display.textContent.indexOf(".") === -1){
-			if(!solved){
-				display.textContent += ".";
-				secondVal += this.textContent;
-				//display.textContent = secondVal;
-			} else if(solved){
-				display.textContent = ".";
-				secondVal += ".";
-				// resetting solved to false.
-				solved = false;
-			}
-		} else {
-			console.log("This number already has a decimal. You cannot add another.");
-		}
-	console.log(secondVal);
-});
-
 clear.addEventListener("click", function(){
 	console.log("clearing the display...");
 	display.textContent = "";
@@ -168,3 +167,15 @@ clear.addEventListener("click", function(){
 });
 
 deleteSection.appendChild(clear);
+
+// adding a "C" button that just clears the current number.
+var del = document.createElement("button");
+del.textContent = "C";
+
+del.addEventListener("click", function(){
+	console.log("going back a number");
+	display.textContent = "";
+	secondVal = "";
+});
+
+deleteSection.appendChild(del);

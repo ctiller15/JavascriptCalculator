@@ -1,5 +1,8 @@
-var display = document.querySelector(".display")
-var calc = document.querySelector("div");
+var display = document.querySelector(".display");
+var numSection = document.querySelector(".numButtons");
+var opSection = document.querySelector(".opButtons");
+var deleteSection = document.querySelector(".deleteButtons");
+var calc = document.querySelector(".calc");
 var firstVal = "";
 var secondVal = "";
 var option = 0;
@@ -14,7 +17,7 @@ function createOperation(name, icon, operation){
 	opsObj[name].button.addEventListener("click", function(){
 		handleOperator(operation);
 	});
-	calc.appendChild(opsObj[name].button);
+	opSection.appendChild(opsObj[name].button);
 }
 
 function solve(){
@@ -98,7 +101,7 @@ for(var i = 0; i < 10; i++){
 			solved = false;
 		}
 	});
-	calc.appendChild(btn);
+	numSection.appendChild(btn);
 }
 
 // Selecting the entire set of numbers.
@@ -107,7 +110,7 @@ var nums = document.querySelectorAll(".number");
 // creating a decimal button.
 var decimal = document.createElement("button");
 decimal.textContent = ".";
-calc.appendChild(decimal);
+numSection.appendChild(decimal);
 
 // creating the addition button.
 createOperation("plus", "+", 1);
@@ -125,7 +128,7 @@ createOperation("divide", "/", 4);
 var equals = document.createElement("button");
 equals.classList.add("equal");
 equals.textContent = "=";
-calc.appendChild(equals);
+numSection.appendChild(equals);
 
 // finally, creating a clear button as per the user stories.
 // I am doing a hard refactor after this is complete.
@@ -164,4 +167,4 @@ clear.addEventListener("click", function(){
 	});
 });
 
-calc.appendChild(clear);
+deleteSection.appendChild(clear);

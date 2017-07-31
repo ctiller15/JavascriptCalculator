@@ -12,11 +12,14 @@
 }
 
 .display{
-	width: 100%;
+	box-sizing: border-box;
+	width: 95%;
 	height: 15vh;
 	border: 1px solid black;
 	font-family: Orbitron;
 	font-size: 2.5em;
+	margin: 0 auto;
+	padding: 3%;
 }
 
 .deleteButtons{
@@ -29,19 +32,24 @@
 
 .deleteButtons button{
 	width: 45%;
+	background: red;
+	color: white;
+	font-weight: bold;
 }
 
 .numButtons{
 	width: 75%;
 	display: flex;
 	justify-content: space-around;
-	flex-wrap: wrap;
+	flex-wrap: wrap-reverse;
 }
 
 .numButtons button{
 	height: 40px;
 	width: 30%;
 	margin-bottom: 5%;
+	background: #E2EBE7;
+	color: black;
 }
 
 .opButtons{
@@ -52,10 +60,25 @@
 }
 .opButtons button{
 	margin-bottom: 5%;
+	background: #191919;
+	color: white;
 }
 
 button{
+	font-family: Orbitron;
 	width: 50px;
 	height: 40px;
-	border: 1px solid black;
+	font-size: 150%;
+}
+
+.button_0{
+	order: -1;
+}
+
+.decimal{
+	order: -1;
+}
+
+.equal{
+	order: -1;
 }

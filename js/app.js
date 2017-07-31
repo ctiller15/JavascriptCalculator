@@ -122,6 +122,7 @@ var nums = document.querySelectorAll(".number");
 // creating a decimal button.
 var decimal = document.createElement("button");
 decimal.textContent = ".";
+decimal.classList.add("decimal");
 decimal.addEventListener("click", function(){
 	console.log("adding a decimal");
 		if(display.textContent.indexOf(".") === -1){
@@ -154,7 +155,7 @@ createOperation("minus", "-", 2);
 createOperation("times", "x", 3);
 
 // creating the division button.
-createOperation("divide", "/", 4);
+createOperation("divide", "÷", 4);
 
 // creating the equality button.
 var equals = document.createElement("button");

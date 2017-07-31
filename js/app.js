@@ -65,7 +65,18 @@ function updateNum(){
 		display.textContent = "";
 	}
 	secondVal += this.textContent;
+	truncateNum();
 	display.textContent = secondVal;
+}
+
+// a function to check the length of the current number.
+function truncateNum(){
+	if(display.textContent.length > 9){
+		display.textContent = display.textContent.substring(0,9);
+	}
+	if(secondVal.length > 9){
+		secondVal = secondVal.substring(0,9);
+	}
 }
 
 function handleOperator(optval){
@@ -100,6 +111,7 @@ for(var i = 0; i < 10; i++){
 			// resetting solved to false.
 			solved = false;
 		}
+		truncateNum();
 	});
 	numSection.appendChild(btn);
 }
@@ -116,6 +128,8 @@ decimal.addEventListener("click", function(){
 			if(!solved){
 				display.textContent += ".";
 				secondVal += this.textContent;
+				console.log(secondVal);
+				truncateNum();
 				//display.textContent = secondVal;
 			} else if(solved){
 				display.textContent = ".";

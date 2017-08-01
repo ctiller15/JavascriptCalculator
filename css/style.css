@@ -12,14 +12,14 @@ body{
 }
 
 #fullCalculator{
-	background: #003485;
+	background: #0E1D5E;
 	width: 320px;
 	height: 480px;
 	margin: auto auto;
 }
 
 h1 {
-	height: 25px;
+	height: 5%;
 	font-family: Orbitron;
 	font-size: 1.25em;
 	text-align: center;
@@ -39,7 +39,7 @@ h1 {
 	font-family: Orbitron;
 	font-size: 2.5em;
 	margin: 0 auto;
-	padding: 3%;
+	padding: 1%;
 	text-align: right;
 	background: #F2F1EE;
 	color: black;
@@ -59,6 +59,17 @@ h1 {
 	color: white;
 	font-weight: bold;
 	border-radius: 5% / 20%;
+	box-shadow: 0px 6px #990000;
+}
+
+.deleteButtons button:hover{
+	background: #FF3838;
+	box-shadow: 0px 6px #C40000;
+}
+
+.deleteButtons button:active{
+	box-shadow: 0px 3px #C40000;
+	transform: translateY(3px);
 }
 
 .numButtons{
@@ -74,8 +85,19 @@ h1 {
 	width: 30%;
 	margin-bottom: 5%;
 	background: #E2EBE7;
+	box-shadow: 0px 4px #9DA3A0;
 	color: black;
 	border-radius: 10% / 18%;
+}
+
+.numButtons button:hover{
+	background: #F7F7F7;
+	box-shadow: 0px 4px #BAC2BF;
+}
+
+.numButtons button:active{
+	box-shadow: 0px 2px #BAC2BF;
+	transform: translateY(2px);
 }
 
 .opButtons{
@@ -88,8 +110,19 @@ h1 {
 	height: 40px;
 	margin-bottom: 5%;
 	background: #191919;
+	box-shadow: 0px 4px #000000;
 	color: white;
 	border-radius: 15% / 18.75%;
+}
+
+.opButtons button:hover{
+	background: #404040;
+	box-shadow: 0px 4px #222222;
+}
+
+.opButtons button:active{
+	box-shadow: 0px 2px #222222;
+	transform: translateY(2px);
 }
 
 button{

@@ -68,9 +68,26 @@ function updateNum(){
 	if(!solved){
 		display.textContent = "";
 	}
-	secondVal += this.textContent;
-	truncateNum();
-	display.textContent = secondVal;
+	// checking if the value is a decimal. If not, proceed as normal.
+	if (this.textContent !== "."){
+		console.log("it is not a decimal.");
+		secondVal += this.textContent;
+		truncateNum();
+		display.textContent = secondVal;
+	} else if (this.textContent === "."){
+		console.log("it is a decimal.");
+		// if it is, proceed with our checks.
+		if(secondVal.indexOf(".") === -1){
+			console.log("no decimals in display.");
+			console.log(secondVal);
+			secondVal += this.textContent;
+			truncateNum();
+			display.textContent = secondVal;
+		} else {
+			console.log("too many decimals!");
+			display.textContent = secondVal;
+		}
+	}
 }
 
 // a function to check the length of the current number.
@@ -103,9 +120,10 @@ function handleOperator(optval){
 for(var i = 0; i < 10; i++){
 	let btn = document.createElement("button");
 	let val = i;
-	btn.classList.add("button_" + val);
-	btn.classList.add("number");
+	btn.classList.add("button_" + val, "number");
 	btn.textContent = val;
+	// Adding initial event listeners for all buttons.
+	// If it's clicked, the number is added to the display.
 	btn.addEventListener("click", function(){
 		// If an expression was just solved, the display will be reset,
 		// and then the program will continue as normal.
@@ -131,22 +149,19 @@ decimal.classList.add("decimal");
 decimal.addEventListener("click", function(){
 	console.log("adding a decimal");
 		if(display.textContent.indexOf(".") === -1){
+			console.log("no decimal here!");
 			if(!solved){
 				display.textContent += ".";
-				//secondVal += this.textContent;
-				//console.log(secondVal);
 				truncateNum();
-				//display.textContent = secondVal;
+				// cutting off the number if it gets too long.
 			} else if(solved){
 				display.textContent = ".";
-				//secondVal += ".";
 				// resetting solved to false.
 				solved = false;
 			}
 		} else {
 			console.log("This number already has a decimal. You cannot add another.");
 		}
-	console.log(secondVal);
 });
 numSection.appendChild(decimal);
 

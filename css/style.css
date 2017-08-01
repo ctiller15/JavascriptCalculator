@@ -7,11 +7,19 @@
 }
 
 body{
-	background: #003485;
+	background: #C7AF81;
 	color: white;
 }
 
+#fullCalculator{
+	background: #003485;
+	width: 320px;
+	height: 480px;
+	margin: auto auto;
+}
+
 h1 {
+	height: 25px;
 	font-family: Orbitron;
 	font-size: 1.25em;
 	text-align: center;
@@ -19,7 +27,7 @@ h1 {
 
 .calc{
 	width: 100%;
-	height: 80vh;
+	height: 80%;
 	display: flex;
 	flex-wrap: wrap;
 }
@@ -27,7 +35,7 @@ h1 {
 .display{
 	box-sizing: border-box;
 	width: 95%;
-	height: 15vh;
+	height: 15%;
 	font-family: Orbitron;
 	font-size: 2.5em;
 	margin: 0 auto;
@@ -39,7 +47,7 @@ h1 {
 
 .deleteButtons{
 	width: 100%;
-	height: 8vh;
+	height: 8%;
 	margin: 2%;
 	display: flex;
 	justify-content: space-between;
@@ -104,10 +112,14 @@ button{
 }
 
 footer{
-	height: 5vh;
-	position: fixed;
-	bottom: 0;
-	margin: 0% 3%;
+	height: 5%;
+	margin: 10% 3% 0%;
 	font-family: Orbitron;
 	font-size: .9em;
+}
+
+@media (min-height: 481px) {
+	#fullCalculator {
+		margin: 10% auto;
+	}
 }

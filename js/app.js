@@ -20,6 +20,7 @@ function createOperation(name, icon, operation){
 	opSection.appendChild(opsObj[name].button);
 }
 
+// sets the "solved" state to true, and completes whatever operation was primed.
 function solve(){
 	equality();
 	solved = true;
@@ -56,6 +57,9 @@ function equality(){
 	nums.forEach(function(num){
 		num.removeEventListener("click", updateNum, false);
 	});
+	decimal.removeEventListener("click", updateNum, false);
+	// truncating the number just in case.
+	truncateNum();
 	// reset the option.
 	option = 0;
 }
@@ -89,6 +93,7 @@ function handleOperator(optval){
 	nums.forEach(function(num){
 		num.addEventListener("click", updateNum, false);
 	});
+	decimal.addEventListener("click", updateNum, false);
 	// the first parameter is always the event e.
 	equals.addEventListener("click", solve, false);
 
@@ -128,13 +133,13 @@ decimal.addEventListener("click", function(){
 		if(display.textContent.indexOf(".") === -1){
 			if(!solved){
 				display.textContent += ".";
-				secondVal += this.textContent;
-				console.log(secondVal);
+				//secondVal += this.textContent;
+				//console.log(secondVal);
 				truncateNum();
 				//display.textContent = secondVal;
 			} else if(solved){
 				display.textContent = ".";
-				secondVal += ".";
+				//secondVal += ".";
 				// resetting solved to false.
 				solved = false;
 			}
